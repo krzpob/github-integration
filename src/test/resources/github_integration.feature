@@ -6,4 +6,4 @@ Feature: check service for github integration
     Then get fullName of repo
     And amount of stars
     And url for clonning repo
-    And some description
+    And empty description
