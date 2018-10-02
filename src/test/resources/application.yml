@@ -1,0 +1,5 @@
+github:
+  url: http://localhost:6565/
+
+stubrunner:
+  ids-to-service-ids: github-service
