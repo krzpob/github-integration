@@ -1,0 +1,71 @@
+swagger: "2.0"
+info:
+  description: "This is a sample server."
+  version: "1.0.0"
+  title: "Github integration"
+  
+  contact:
+    email: "krzpob@gmail.com"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "localhost"
+basePath: "/"
+tags:
+- name: "task"
+  description: "Execute task"
+  
+schemes:
+- "http"
+paths:
+  /repositories/{owner}/{repository-name}:
+    get:
+      tags:
+      - "task"
+      summary: "Get repository info"
+      description: ""
+      operationId: "get repo"
+      produces:
+      - "application/json"
+      consumes:
+      - "application/json"
+      parameters:
+      - in: "path"
+        name: "owner"
+        description: "owner login"
+        required: true
+        type: string
+      - in: "path"
+        name: repository-name
+        required: true
+        type: string
+        description: "Name of repository"
+       
+      responses:
+        200:
+          description: "OK"
+          schema:
+            description: "Repositorey details"
+            $ref: '#/definitions/Repository'
+        404:
+          description: "Repo or owner not found"
+        401:
+          description: "Not access"
+        403:
+          description: "Not access"
+definitions:
+  Repository:
+    type: "object"
+    properties:
+      fullName:
+        type: "string"
+      description:
+        type: "string"
+      cloneUrl:
+        type: "string"
+      stars:
+        type: "integer"
+        format: "int32"
+      createdAt:
+        type: "string"
+        format: "date-time"
